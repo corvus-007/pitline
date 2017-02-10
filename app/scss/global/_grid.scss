@@ -1,11 +1,16 @@
 $grid-count: 12;
-$grid-gutter: 10;
+$grid-gutter: 15;
 
 .grid {
   display: flex;
   flex-wrap: wrap;
   margin-left: $grid-gutter * -1px;
   margin-right: $grid-gutter * -1px;
+}
+
+@mixin createFlexColumn($column: 12) {
+  flex-basis: percentage($column / $grid-count);
+  max-width: percentage($column / $grid-count);
 }
 
 [class*="col-"] {

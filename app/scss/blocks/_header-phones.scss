@@ -1,0 +1,39 @@
+.header-phones {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+  font-size: rem(15);
+}
+
+.header-phones__icon-holder {
+
+}
+
+.header-phones__icon {
+  width: rem(25);
+  height: rem(25);
+  color: $accent-color;
+}
+
+.header-phones__list {
+  @include clear-list();
+  margin-right: 1em;
+
+  li {
+
+  }
+
+  a {
+    color: #7f889d;
+    &:hover {
+      color: currentColor;
+    }
+  }
+
+  span {
+    font-weight: 700;
+    color: $base-color;
+  }
+}
+
+

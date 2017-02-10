@@ -20,10 +20,21 @@
 @import "blocks/form";
 @import "blocks/table";
 @import "blocks/popup";
+@import "blocks/badge";
+@import "blocks/topbar";
 @import "blocks/site-header";
-@import "blocks/site-nav";
+@import "blocks/header-logo";
+@import "blocks/header-cart";
+@import "blocks/header-phones";
+
+// @import "blocks/site-nav";
 @import "blocks/hamburger-menu";
 @import "blocks/index-slider";
+@import "blocks/index-section";
+@import "blocks/index-features";
+@import "blocks/index-brands";
+@import "blocks/product-price";
+@import "blocks/product-card";
 @import "blocks/page";
 @import "blocks/archive-events";
 @import "blocks/site-footer";

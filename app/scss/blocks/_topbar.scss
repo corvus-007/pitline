@@ -1,0 +1,29 @@
+.topbar {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: #7f889d;
+  font-size: rem(12);
+  background-color: #242a38;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.topbar__inner {
+  @include container();
+  display: flex;
+  justify-content: space-between;
+}
+
+.topbar__link {
+  color: currentColor;
+}
+
+.topbar__text-link {
+  vertical-align: middle;
+}
+
+.topbar__icon-link {
+  margin-left: 0.5em;
+}

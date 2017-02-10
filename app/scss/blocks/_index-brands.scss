@@ -1,0 +1,19 @@
+.index-brands {
+  background-color: #f0f1f6;
+}
+
+.index-brands__list {
+  @include clear-list();
+  align-items: center;
+  margin-bottom: -2rem;
+}
+
+.index-brand {
+  flex: 1 1 100%;
+  flex-basis: 20%;
+  padding-left: $grid-gutter * 1px;
+  padding-right: $grid-gutter * 1px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+}

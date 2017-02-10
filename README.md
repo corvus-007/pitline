@@ -1,4 +1,4 @@
-# start-project
+# PITLINE
 Структура:
 ```
 app/
@@ -10,7 +10,7 @@ app/
    |--functions.scss
    |--mixins.scss
    |--styles.scss
-|--img/
+|--images/
    |--svg-icons/
    |--svg-symbols/ (для объединения в один файл symbols.svg)
 |--js/
@@ -26,8 +26,8 @@ other/
 ## Установка
 1. Перейти в родительскую папку проектов
 2. Запустить консоль Git Bash
-3. Ввести команду `git clone https://github.com/corvus-007/start-project имя_проекта`, где `имя_проекта` — название вашего проекта
-4. Перейти в каталог проекта `cd имя_проекта`
+3. Ввести команду `git clone https://github.com/corvus-007/start-project pitline`
+4. Перейти в каталог проекта `cd pitline`
 5. Установить модули из package.json — `npm install`
 
 ## Запуск проекта
@@ -39,4 +39,4 @@ other/
 
 
 Из папки js/plugins/ объединяются js-файлы и помещаются в js/plugins.js
-Из папки img/svg-symbols/ объединяются svg-файлы и помещаются в img/symbols.svg
+Из папки images/svg-symbols/ объединяются svg-файлы и помещаются в images/symbols.svg

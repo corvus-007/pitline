@@ -1,0 +1,39 @@
+.header-cart {
+  display: flex;
+  align-items: center;
+  font-size: rem(12);
+  color: currentColor;
+}
+
+.header-cart__icon-holder {
+  position: relative;
+}
+
+.header-cart__badge {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+}
+
+.header-cart__icon {
+  width: rem(25);
+  height: rem(25);
+}
+
+.header-cart__body {
+  margin-left: 1em;
+}
+
+.header-cart__caption {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.header-cart__text {
+  display: block;
+}
+
+.header-cart__price {
+  color: $accent-color;
+}

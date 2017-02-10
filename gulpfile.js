@@ -70,23 +70,23 @@ gulp.task('fileinclude', function() {
 });
 
 gulp.task('images', function() {
-  return gulp.src('build/img/**/*.{png,jpg,gif}')
+  return gulp.src('build/images/**/*.{png,jpg,gif}')
     // .pipe(imagemin([
     //   imagemin.optipng({optimizationLevel: 3}),
     //   imagemin.jpegtran({progressive: true})
     // ]))
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest('build/images'));
 });
 
 
 gulp.task('symbols', function() {
-  return gulp.src('build/img/svg-symbols/*.svg')
+  return gulp.src('build/images/svg-symbols/*.svg')
     .pipe(svgmin())
     .pipe(svgstore({
       inlineSvg: true
     }))
     .pipe(rename('symbols.svg'))
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest('build/images'));
 });
 
 gulp.task('clean', function() {
@@ -96,7 +96,7 @@ gulp.task('clean', function() {
 gulp.task('copy', function() {
   return gulp.src([
       'app/fonts/**/*.{woff,woff2}',
-      'app/img/**',
+      'app/images/**',
 //      'app/js/**',
       'app/*.html'
     ], {

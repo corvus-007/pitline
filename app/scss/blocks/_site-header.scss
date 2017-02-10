@@ -1,0 +1,16 @@
+.site-header {
+  border-bottom: 5px solid;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.site-header__inner {
+  @include container();
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-header__column {
+  margin-right: 60px;
+}
