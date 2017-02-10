@@ -10,10 +10,10 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: -15px;
+    margin-top: rem(-15);
     display: flex;
     justify-content: center;
-    padding: 10px 15px;
+    padding: rem(10) rem(15);
     border-radius: 50px;
     background-color: #dfe4ea;
 
@@ -62,19 +62,37 @@
 
   .slick-arrow {
     position: absolute;
+    width: rem(40);
+    height: rem(40);
+    overflow: hidden;
+    text-indent: -1000px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(#fff, 0.8);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    outline: none;
+    transition: background-color 0.25s;
+
+    &:hover {
+      background-color: #fff;
+    }
   }
 
   .slick-prev {
     left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M179.2 38.4c0 1.64-.63 3.27-1.88 4.52L92.25 128l85.07 85.07c2.5 2.5 2.5 6.55 0 9.05s-6.55 2.5-9.05 0l-89.6-89.6c-2.5-2.5-2.5-6.55 0-9.05l89.6-89.6c2.5-2.5 6.55-2.5 9.05 0 1.25 1.25 1.88 2.9 1.88 4.53z'/%3E%3C/svg%3E%0A");
   }
 
   .slick-next {
     right: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M76.8 217.6c0-1.64.63-3.27 1.88-4.52L163.75 128 78.67 42.92c-2.5-2.5-2.5-6.55 0-9.05s6.55-2.5 9.05 0l89.6 89.6c2.5 2.5 2.5 6.56 0 9.06l-89.6 89.6c-2.5 2.5-6.55 2.5-9.05 0-1.25-1.25-1.87-2.9-1.87-4.53z'/%3E%3C/svg%3E%0A");
   }
 }
 
 .index-slide {
-
+  overflow: hidden;
   padding-top: 50px;
   padding-bottom: 50px;
   p {

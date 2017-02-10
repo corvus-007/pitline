@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
-  padding: 35px 25px;
+  padding: 15px 10px;
   position: relative;
   border: 2px solid #f1f1f1;
   font-size: rem(12);
@@ -40,10 +40,10 @@
     border: 2px solid #f1f1f1;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: $base-color;
   }
-
 
   @media (min-width: 400px) {
     @include createFlexColumn(6);
@@ -55,6 +55,7 @@
 
   @media (min-width: $media-tablet-up) {
     @include createFlexColumn(3);
+    padding: 35px 25px;
   }
 }
 
@@ -92,13 +93,14 @@
 }
 
 .product-card__actions {
-  display: flex;
-  justify-content: space-between;
 }
 
 .product-card__actions-column {
-  overflow: hidden;
-  height: rem(10 + 13 * 2 + 7.5);
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .product-card__switcher {
@@ -115,13 +117,12 @@
   }
 }
 
-.product-card:hover .product-card__switcher {
-  transform: translateY(calc(-100% + 1px));
-  // transform: translateY(-100%);
-}
-
 .product-card__action {
   @include createButton(10);
+  display: block;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%;
 }
 
 .product-card__more {
@@ -130,12 +131,26 @@
 
 .product-card__add-to-cart {
   @include buttonColor(#2c2929);
-  padding-left: em(13, 10);
-  padding-right: em(13, 10);
 }
 
-@media (min-width: $media-laptop-up) {
-  .product-card {
-    
+@media (min-width: $media-tablet-up) {
+  .product-card__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .product-card:hover .product-card__switcher {
+    transform: translateY(-100%);
+  }
+
+  .product-card__actions-column {
+    height: rem(10 + 13 * 2 + 7.5);
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .product-card__add-to-cart {
+    padding-left: em(13, 10);
+    padding-right: em(13, 10);
   }
 }

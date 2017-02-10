@@ -9,11 +9,29 @@
 }
 
 .index-brand {
-  flex: 1 1 100%;
-  flex-basis: 20%;
+  @include createFlexColumn(6);
   padding-left: $grid-gutter * 1px;
   padding-right: $grid-gutter * 1px;
   text-align: center;
   box-sizing: border-box;
   margin-bottom: 2rem;
+}
+
+@media (min-width: $media-mobile-up) {
+  .index-brand {
+    @include createFlexColumn(4);
+  }
+}
+
+@media (min-width: $media-tablet-up) {
+  .index-brand {
+    @include createFlexColumn(3);
+  }
+}
+
+@media (min-width: $media-laptop-up) {
+  .index-brand {
+    flex-basis: calc(100% / 7);
+    max-width: calc(100% / 7);
+  }
 }

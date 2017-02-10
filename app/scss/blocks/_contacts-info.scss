@@ -1,0 +1,33 @@
+.contacts-info {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 60px;
+  background-color: #fff;
+  float: right;
+  position: relative;
+
+  a[href^="mailto"] {
+    border-bottom: 2px solid $accent-color;
+  }
+}
+
+.contacts-info__caption {
+  display: block;
+  margin: 0;
+  margin-bottom: rem(18 * 2);
+  font-size: rem(24);
+  font-family: $secondary-font;
+
+  span {
+    color: $accent-color;
+  }
+}
+
+.contacts-info__item {
+  @include clear-list();
+  margin-bottom: 2em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
