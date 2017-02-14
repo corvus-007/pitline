@@ -1,0 +1,28 @@
+.action-button {
+  @include createButton();
+  @include buttonColor($accent-color, #fff);
+  transform: skew(-35deg);
+  padding: rem(15) rem(40);
+  padding-right: rem(75);
+  position: relative;
+  border: none;
+  font-size: rem(12);
+  
+  &::before {
+    content: "";
+    transform-origin: 0 100%;
+    transform: skew(35deg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: rem(55);
+    background-color: #7ce;
+    background-color: inherit;
+  }
+}
+
+.action-button__text {
+  transform: skew(35deg);
+  display: inline-block;
+}

@@ -27,8 +27,12 @@ body {
   font-size: 100%;
   font-weight: normal;
   line-height: normal;
-  background-color: #fff;
+  background-color: #f0f1f6;
   color: $base-color;
+}
+
+.homepage {
+  background-color: #fff;
 }
 
 .container {
@@ -39,6 +43,7 @@ a {
   color: $link-color;
   text-decoration: none;
   outline: none;
+  transition: color 0.22s;
 
   &:not([class]) {
     border-bottom: 2px solid;
@@ -71,26 +76,32 @@ h3,
 h4 {
   margin-top: 0.7em;
   margin-bottom: 0.5em;
+  font-family: $secondary-font;
 }
+
 
 h1,
 .h1 {
-  font-size: rem(32);
+  margin-top: rem(90);
+  margin-bottom: rem(30);
+  font-size: rem(36);
 }
 
 h2,
 .h2 {
-  font-size: rem(27);
+  margin-top: rem(35);
+  margin-bottom: rem(15);
+  font-size: rem(24);
 }
 
 h3,
 .h3 {
-  font-size: rem(24);
+  font-size: rem(22);
 }
 
 h4,
 .h4 {
-  font-size: rem(21);
+  font-size: rem(20);
 }
 
 
@@ -120,4 +131,9 @@ img {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+
+body:not(.homepage) .site-main {
+  @include container();
 }

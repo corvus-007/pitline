@@ -48,7 +48,26 @@ function initializeMap() {
   var markerPriem = new google.maps.Marker({
     position: locationOffice,
     map: map,
-    title: '«PITLINE Брянск»'
+    title: 'PITLINE Брянск'
+  });
+}
+
+// Выровнять элементы по высоте.
+// elements - строка селектора, напр. '.element'
+function setMaxHeight(elements) {
+  var maxHeight = 0;
+  elements = document.querySelectorAll(elements);
+
+  if (!elements.length) {
+    return;
+  }
+
+  Array.prototype.forEach.call(elements, function findMaxHeight(element) {
+    maxHeight = (maxHeight > element.clientHeight) ? maxHeight : element.clientHeight;
+  });
+
+  Array.prototype.forEach.call(elements, function specifyMaxHeight(element) {
+    element.style.height = maxHeight + 'px';
   });
 }
 
@@ -63,10 +82,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  if ('matchMedia' in window) {
+    if (matchMedia('(min-width: 400px)').matches) {
+      setMaxHeight('.product-card__title');
+      setMaxHeight('.product-card__properties');
+    }
+  }
+
+
+
 
   var locationMap = document.querySelector('#location-map');
 
   if (locationMap) {
     loadMapScript();
   }
+
+
+  $('.js-trigger-inline-popup').magnificPopup({
+    mainClass: 'popup-fade',
+    removalDelay: 300
+  });
+
+  $('.product-main-photo').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    mainClass: 'popup-fade',
+    removalDelay: 300,
+    gallery: {
+      enabled: true
+    },
+    retina: {
+      ratio: 2
+    }
+  });
+
+
+  // Tabs
+  $('.tabs').tabslet();
 });

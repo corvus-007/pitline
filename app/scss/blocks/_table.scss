@@ -1,3 +1,76 @@
+.response-table {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+
+  table {
+    margin-bottom: 0;
+  }
+
+}
+
+table {
+  max-width: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  cursor: default;
+  margin-bottom: 1rem;
+  font-size: rem(13);
+}
+
+caption {
+}
+
+th,
+td {
+  padding: 1em 20px;
+}
+
+thead {
+  th,
+  td {
+    border-bottom-width: 2px;
+  }
+}
+
+tbody {
+  tr:nth-child(even) {
+    td {
+      background-color: #e6ebf1;
+    }
+  }
+
+  tr {
+    &:hover {
+      td {
+        background-color: lighten(#f0f1f6, 2%);
+      }
+    }
+  }
+
+}
+
+.woocommerce table.shop_table {
+  border-radius: 0;
+  border: none;
+}
+
+
+$mapAlign: (left, center, right);
+$countCells: 5;
+
 .table {
-  
+  @each $align in $mapAlign {
+
+    @for $i from 1 through $countCells {
+
+      &-#{$align}-colgroup-#{$i} {
+        th:nth-child(#{$i}),
+        td:nth-child(#{$i}) {
+          text-align: $align;
+        }
+      }
+      
+    }
+
+  }
 }
