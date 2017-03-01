@@ -23,6 +23,9 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: $primary-font;
   font-size: 100%;
   font-weight: normal;
@@ -33,6 +36,10 @@ body {
 
 .homepage {
   background-color: #fff;
+}
+
+.site-wrapper {
+  flex-grow: 1;
 }
 
 .container {
@@ -63,11 +70,7 @@ a {
 }
 
 .dotted-link {
-  border-bottom: 1px solid transparent;
-  background-image: linear-gradient(to right, currentColor 1px, transparent 0);
-  background-position: 0 100%;
-  background-size: 3px 1px;
-  background-repeat: repeat-x;
+  @include dotted-link();
 }
 
 h1,
@@ -133,7 +136,26 @@ img {
   overflow: hidden;
 }
 
-
 body:not(.homepage) .site-main {
   @include container();
+  padding-bottom: 64px;
+}
+
+
+// Helpers
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-accent {
+  color: $accent-color;
 }

@@ -1,0 +1,55 @@
+.filter {
+  margin-bottom: 3rem;
+}
+
+.filter__list {
+  @include clear-list();
+  text-align: center;
+}
+
+.filter__list li {
+  margin-bottom: 0.3em;
+  display: inline-block;
+  vertical-align: middle;
+  transition: background-color 0.3s;
+}
+
+.filter__list li:hover {
+  // background-color: #dfe6ed;
+}
+
+.filter__list .current,
+.filter__list .current:hover {
+  background-color: #fff;
+}
+
+.filter__list a {
+  @include dotted-link();
+  display: block;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  line-height: 1.9;
+  color: currentColor;
+  background-clip: content-box;
+  background-origin: content-box;
+  transition: background-image 0.3s;
+}
+
+.filter__list li:hover a {
+  background-image: linear-gradient(to right, $accent-color, $accent-color 0);
+}
+
+.filter__list .current a {
+  border: none;
+  background-image: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+.filter__form {
+
+}
+
+.filter__select {
+
+}

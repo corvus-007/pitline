@@ -4,6 +4,10 @@
 
 .product__section {
   margin-bottom: 64px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .product__columns {
@@ -26,7 +30,7 @@
 
 .product-summary-table {
   td:last-child {
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 

@@ -1,9 +1,10 @@
 .action-button {
   @include createButton();
   @include buttonColor($accent-color, #fff);
+  transform-origin: 0 100%;
   transform: skew(-35deg);
-  padding: rem(15) rem(40);
-  padding-right: rem(75);
+  padding: rem(12) rem(25);
+  padding-right: rem(50);
   position: relative;
   border: none;
   font-size: rem(12);
@@ -16,7 +17,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: rem(55);
+    width: rem(35);
     background-color: #7ce;
     background-color: inherit;
   }

@@ -18,12 +18,12 @@
 
 @mixin createButton($size: 10) {
   display: inline-block;
-  padding: em(13, $size) em(30, $size);
+  padding: em(9, $size) em(30, $size);
   border: 2px solid transparent;
   text-align: center;
   font-family: inherit;
   font-size: rem($size);
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
   line-height: normal;

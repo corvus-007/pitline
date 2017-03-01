@@ -47,6 +47,15 @@
   border-radius: $value;
 }
 
+@mixin dotted-link($size: 2px) {
+  border-bottom: $size solid transparent;
+  background-image: linear-gradient(to right, currentColor $size, transparent 0);
+  background-position: 0 100%;
+  background-size: $size * 2 $size;
+  background-origin: border-box;
+  background-repeat: repeat-x;
+}
+
 /// Подстраивание изображений (и не только) под заданные пропорции
 @mixin fitObject($target-width: 1, $target-height: 1, $fit: cover) {
   display: block;
