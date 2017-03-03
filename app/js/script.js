@@ -27,7 +27,10 @@ function loadMapScript() {
 
 // Инициализация карты
 function initializeMap() {
-  var locationOffice = { lat: 53.249121, lng: 34.335855 };
+  var locationOffice = {
+    lat: 53.249121,
+    lng: 34.335855
+  };
 
   function createProp(defaultLocation) {
     return {
@@ -36,7 +39,7 @@ function initializeMap() {
       streetViewControl: false,
       zoomControl: true,
       zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_CENTER
+        position: google.maps.ControlPosition.RIGHT_CENTER
       },
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       scrollwheel: false,
@@ -91,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
   var locationMap = document.querySelector('#location-map');
 
   if (locationMap) {
@@ -120,4 +122,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Tabs
   $('.tabs').tabslet();
+
+  /*==============================
+  =            Filter            =
+  ==============================*/
+
+  // var queryString = location.search.substring(1);
+  // var vars = queryString.split('&');
+  // console.log(queryString, vars);
+  // 
+  var parseQueryString = function() {
+
+    var str = window.location.search;
+    var objURL = {};
+
+    str.replace(
+      new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+      function($0, $1, $2, $3) {
+        objURL[$1] = $3;
+      }
+    );
+    return objURL;
+  };
+
+
+
+  var $filter = $('.filter');
+
+  if ($filter.length) {
+
+    var params = parseQueryString();
+
+    var $grid = $('.products-grid').isotope({
+      itemSelector: '.product-card'
+    });
+
+    $('.filter__list').on('click', 'a', function(event) {
+      event.preventDefault();
+      var filterValue = '.' + this.dataset.filter;
+      console.log(filterValue, 'click');
+
+      $('.filter__list').find('.current').removeClass('current');
+      $(this).closest('li').addClass('current');
+
+      $grid.isotope({
+        filter: filterValue
+      });
+    });
+
+    $('.filter__select').on('change', function(event) {
+      var filterValue = '.' + this.value;
+      console.log(filterValue);
+      $grid.isotope({
+        filter: filterValue
+      });
+    });
+
+    var param = decodeURIComponent(params['filter-id']) || '*';
+
+    console.log(param);
+
+    $('[data-filter="' + param +'"]').trigger('click');
+    console.log($('[data-filter="' + param +'"]'));
+
+  }
+
+  /*=====  End of Filter  ======*/
+
 });

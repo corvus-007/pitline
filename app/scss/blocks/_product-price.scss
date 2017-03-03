@@ -1,7 +1,21 @@
 .product-price {
-  font-weight: 600;
+  font-family: 'impact', sans-serif;
+  font-style: italic;
+  font-size: rem(30);
+  text-shadow: -0.05em -0.04em 0 #fff, -0.07em 0.05em 0 #fff, 0.07em -0.05em 0 #fff, 0.04em 0.05em 0 #fff, 0.08em 0.09em 0 #707070, -0.04em 0.09em 0.01em #707070;
+
+  &::after {
+    content: " .-\00a0";
+    margin-left: -0.16em;
+  }
+
+  .woocommerce-Price-currencySymbol {
+    display: none;
+  }
 }
 
 .product-price__value {
-  color: $accent-color;
+  // color: $accent-color;
 }
+
+

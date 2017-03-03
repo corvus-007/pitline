@@ -39,7 +39,8 @@
   background-image: linear-gradient(to right, $accent-color, $accent-color 0);
 }
 
-.filter__list .current a {
+.filter__list .current a,
+.filter__list .current:hover a {
   border: none;
   background-image: none;
   cursor: default;
