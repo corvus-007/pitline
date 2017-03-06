@@ -126,3 +126,31 @@
     // margin-right: -2rem;
   }
 }
+
+@media (max-width: $media-tablet-down) {
+  .index-slide {
+    padding-top: 25px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+  }
+
+  .index-slide__inner {
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    min-width: 0;
+  }
+
+  .index-slide__text {
+    margin-top: 1em;
+    margin-left: auto;
+    font-size: rem(22);
+    flex-basis: auto;
+    order: 1;
+  }
+
+  .index-slide__image {
+    margin-right: auto;
+  }
+}

@@ -37,3 +37,22 @@
 .header-cart__price {
   color: $accent-color;
 }
+
+
+@media (max-width: $media-tablet-down) {
+  .header-cart {
+    order: 2;
+    position: relative;
+    margin-right: 0.8em;
+    margin-left: 0.4em;
+    border: 1em solid transparent;
+
+    &::before {
+      content: "";
+    }
+  }
+
+  .header-cart__body {
+    display: none;
+  }
+}

@@ -2,3 +2,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.product-selling__button {
+  @include createButton();
+  @include buttonColor($accent-color, #fff);
+}

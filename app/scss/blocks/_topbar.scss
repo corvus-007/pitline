@@ -7,17 +7,20 @@
 
   p {
     margin-bottom: 0;
+    width: 100%;
   }
 }
 
 .topbar__inner {
   @include container();
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .topbar__link {
-  color: currentColor;
+  display: block;
+  text-align: center;
+  color: #fff;
 }
 
 .topbar__text-link {
@@ -26,4 +29,21 @@
 
 .topbar__icon-link {
   margin-left: 0.5em;
+}
+
+@media (min-width: $media-mobile-up) {
+  .topbar {
+    p {
+      width: auto;
+    }
+  }
+
+  .topbar__link {
+    display: inline-block;
+    color: currentColor;
+  }
+
+  .topbar__inner {
+    justify-content: space-between;
+  }
 }

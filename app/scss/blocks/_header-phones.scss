@@ -37,3 +37,15 @@
 }
 
 
+@media (max-width: $media-tablet-down) {
+  .header-phones {
+  }
+
+  .header-phones__icon-holder {
+    display: none;
+  }
+
+  .header-phones__list {
+    text-align: center;
+  }
+}

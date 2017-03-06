@@ -6,13 +6,21 @@
 }
 
 .header-logo__image {
+  min-width: 90px;
 
 }
 
 .header-logo__text {
   margin: 0;
   margin-left: 1em;
+  display: none;
   span {
+    display: block;
+  }
+}
+
+@media (min-width: $media-tablet-up) {
+  .header-logo__text {
     display: block;
   }
 }
