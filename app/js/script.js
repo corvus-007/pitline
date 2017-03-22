@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $(indexSlider).slick({
       accessibility: false,
       dots: true,
+      autoplay: true,
       appendArrows: '.index-slider__arrows-wrapper'
     });
   }
@@ -106,6 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
     removalDelay: 300
   });
 
+
+  $('.js-trigger-image-popup').magnificPopup({
+    type: 'image',
+    mainClass: 'popup-fade',
+    removalDelay: 300
+  });
+
   $('.product-main-photo').magnificPopup({
     delegate: 'a',
     type: 'image',
@@ -127,66 +135,104 @@ document.addEventListener('DOMContentLoaded', function() {
   =            Filter            =
   ==============================*/
 
-  // var queryString = location.search.substring(1);
-  // var vars = queryString.split('&');
-  // console.log(queryString, vars);
-  // 
-  var parseQueryString = function() {
 
-    var str = window.location.search;
-    var objURL = {};
+  function getHashFilter() {
+    var hash = location.hash;
+    // get filter=filterName
+    var matches = location.hash.match( /filter=([^&]+)/i );
+    var hashFilter = matches && matches[1];
 
-    str.replace(
-      new RegExp("([^?=&]+)(=([^&]*))?", "g"),
-      function($0, $1, $2, $3) {
-        objURL[$1] = $3;
-      }
-    );
-    return objURL;
-  };
-
-
+    if (!hashFilter) {
+      return '*';
+    }
+    return hashFilter && decodeURIComponent( hashFilter );
+  }
 
   var $filter = $('.filter');
 
   if ($filter.length) {
-
-    var params = parseQueryString();
-
-    var $grid = $('.products-grid').isotope({
-      itemSelector: '.product-card'
-    });
-
-    $('.filter__list').on('click', 'a', function(event) {
+    var $grid = $('.products-grid');
+    var $filters = $filter.on( 'click', 'a', function(event) {
       event.preventDefault();
-      var filterValue = '.' + this.dataset.filter;
-      console.log(filterValue, 'click');
-
-      $('.filter__list').find('.current').removeClass('current');
-      $(this).closest('li').addClass('current');
-
-      $grid.isotope({
-        filter: filterValue
-      });
+      var filterAttr = $( this ).data('filter');
+      console.log(filterAttr)
+      // set filter in hash
+      location.hash = 'filter=' + encodeURIComponent( filterAttr );
     });
 
-    $('.filter__select').on('change', function(event) {
-      var filterValue = '.' + this.value;
-      console.log(filterValue);
-      $grid.isotope({
-        filter: filterValue
-      });
-    });
-
-    var param = decodeURIComponent(params['filter-id']) || '*';
-
-    console.log(param);
-
-    $('[data-filter="' + param +'"]').trigger('click');
-    console.log($('[data-filter="' + param +'"]'));
-
+    var isIsotopeInit = false;
+    onHashchange();
   }
 
+    
+
+    // bind filter button click
+
+
+    function onHashchange() {
+      var hashFilter = getHashFilter();
+      hashFilter = (hashFilter != '*') ? hashFilter: 'product-card';
+      if ( !hashFilter && isIsotopeInit ) {
+        return;
+      }
+      isIsotopeInit = true;
+      // filter isotope
+      $grid.isotope({
+        itemSelector: '.product-card',
+        filter: '.' + hashFilter
+      });
+      // set selected class on button
+      if ( hashFilter ) {
+        $filters.find('.current').removeClass('current');
+        $filters.find('[data-filter="' + hashFilter + '"]').closest('li').addClass('current');
+      }
+    }
+
+    $(window).on( 'hashchange', onHashchange );
+    // trigger event handler to init Isotope
+
   /*=====  End of Filter  ======*/
+
+
+
+  /*======================================
+  =            Yandex targets            =
+  ======================================*/
+  
+  // Заказ отправлен (полностью завершили заказ и нажали кнопку "Подтвердить")
+  $('.woocommerce-checkout').on('submit', function() {
+    yaCounter43474974.reachGoal('ORDER_SEND');
+  });
+
+
+  // Добавили товар в корзину
+  $('.product-card__add-to-cart').on('click', targetAddToCart);
+  $('form.cart').on('submit', targetAddToCart);
+
+  function targetAddToCart() {
+    yaCounter43474974.reachGoal('ADD_TO_CART');
+  }
+
+
+  // Перешли в корзину и нажали на кнопку "Перейти к оформлению"
+  $('.wc-proceed-to-checkout .checkout-button').on('click', function() {
+    yaCounter43474974.reachGoal('ORDER_FORM');
+  });
+
+
+  // Отправили форму обратной связи (в шапке) 
+  $('#popup-callback form').on('submit', function() {
+    yaCounter43474974.reachGoal('CALLBACK_FORM');
+  });
+
+
+  // Кликнули по адресу email в шапке сайта
+  $('[href="mailto:info@pitline32.ru"]').on('click', function() {
+    yaCounter43474974.reachGoal('CLICK_TO_EMAIL');
+  });
+  
+  /*=====  End of Yandex targets  ======*/
+
+  
 
 });
