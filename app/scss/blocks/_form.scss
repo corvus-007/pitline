@@ -18,31 +18,42 @@
   content: "*";
 }
 
-.form-control {
-  @include border-rounded();
-  padding: em(14, 18) em(24, 18);
+.form-control,
+select,
+.input-text,
+.select2-container .select2-choice {
+  @include border-rounded(0);
+  padding: rem(10) rem(20);
   width: 100%;
+  min-width: 120px;
   outline: none;
-  border: 2px solid transparent;
-  background: #edeef1;
+  border: 1px solid transparent;
+  background: #d5d7e3 ;
   font: inherit;
-  font-size: rem(18);
+  font-size: rem(16);
   line-height: normal;
   box-sizing: border-box;
   transition: 0.3s;
 }
 
-textarea.form-control {
-  max-height: 200px;
+textarea.form-control,
+textarea.input-text {
+  max-height: 300px;
   resize: vertical;
 }
 
-.form-control:hover {
+.form-control:hover,
+select:hover,
+.input-text:hover {
   background: #f9f9f9;
+  border-color: mix(#000, #d5d7e3, 4%);
+  color: $base-color;
 }
 
-.form-control:focus {
-  border-color: mix(#000, #e3e3e1, 7%);
+.form-control:focus,
+select:focus,
+.input-text:focus {
+  border-color: mix(#000, #d5d7e3, 8%);
   background: #fff;
 }
 
@@ -53,8 +64,11 @@ textarea.form-control {
 
 .form-submit {
   width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
   padding-left: 5px;
   padding-right: 5px;
+  font-size: rem(14);
 }
 
 .form-submit:hover,
@@ -81,6 +95,7 @@ textarea.form-control {
   }
 }
 span.wpcf7-not-valid-tip {
+  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -88,7 +103,6 @@ span.wpcf7-not-valid-tip {
   padding: 5px 10px;
   background-color: $danger-color;
   color: #fff;
-  display: inline-block;
   font-size: rem(11);
 }
 
@@ -119,14 +133,34 @@ span.wpcf7-not-valid-tip {
   text-shadow: none;
 
   &.wpcf7-validation-errors {
-    background-color: rgba($warning-color, 0.8);
+    background-color: $warning-color;
     border-color: $warning-color;
-    color: mix(#000, $warning-color, 60%);
+    color: mix(#000, $warning-color, 80%);
   }
 
   &.wpcf7-mail-sent-ok {
-    background-color: rgba($success-color, 0.8);
+    background-color: $success-color;
     border-color: $success-color;
-    color: mix(#000, $success-color, 60%);
+    color: mix(#000, $success-color, 80%);
   }
+}
+
+.woocommerce form .form-row-first,
+.woocommerce form .form-row-last,
+.woocommerce-page form .form-row-first,
+.woocommerce-page form .form-row-last {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.woocommerce-checkout #payment {
+  background: #fff;
+}
+
+#add_payment_method #payment div.payment_box, .woocommerce-cart #payment div.payment_box, .woocommerce-checkout #payment div.payment_box {
+  background-color: #f9f9f9;
+}
+
+#add_payment_method #payment div.payment_box:before, .woocommerce-cart #payment div.payment_box:before, .woocommerce-checkout #payment div.payment_box:before {
+  border-bottom-color: #f9f9f9;
 }

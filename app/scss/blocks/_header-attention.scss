@@ -1,0 +1,13 @@
+.header-attention {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: $gray-color;
+}
+
+.header-attention__inner {
+  @include container();
+}
+
+.header-attention__image {
+  user-select: none;
+}

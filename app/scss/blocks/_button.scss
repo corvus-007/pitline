@@ -45,6 +45,15 @@
   @include buttonColor($accent-color, #fff);
 }
 
+.woocommerce-message a.button,
+.woocommerce a.button,
+.woocommerce .cart .button, .woocommerce .cart input.button,
+.woocommerce-cart .wc-proceed-to-checkout a.button,
+.woocommerce input.button.alt {
+  @include createButton();
+  @include buttonColor($accent-color, #fff);
+}
+
 @supports (clip-path: polygon(0% 100%)) or (webkit-clip-path: polygon(0% 100%)) {
   .button--crop-corner {
     padding-right: 60px;

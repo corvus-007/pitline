@@ -74,3 +74,20 @@ $countCells: 5;
 
   }
 }
+
+
+.woocommerce table.shop_table th {
+  font-family: $primary-font;
+  text-transform: none;
+  font-style: normal;
+  text-shadow: none;
+  font-size: 16px;
+}
+
+.woocommerce table.shop_table td {
+  font-family: $primary-font;
+  text-transform: none;
+  font-style: normal;
+  text-shadow: none;
+  font-size: 16px;
+}
