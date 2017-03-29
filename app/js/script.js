@@ -139,57 +139,57 @@ document.addEventListener('DOMContentLoaded', function() {
   function getHashFilter() {
     var hash = location.hash;
     // get filter=filterName
-    var matches = location.hash.match(/filter=([^&]+)/i);
+    var matches = location.hash.match( /filter=([^&]+)/i );
     var hashFilter = matches && matches[1];
 
     if (!hashFilter) {
       return '*';
     }
-    return hashFilter && decodeURIComponent(hashFilter);
+    return hashFilter && decodeURIComponent( hashFilter );
   }
 
   var $filter = $('.filter');
 
   if ($filter.length) {
     var $grid = $('.products-grid');
-    var $filters = $filter.on('click', 'a', function(event) {
+    var $filters = $filter.on( 'click', 'a', function(event) {
       event.preventDefault();
-      var filterAttr = $(this).data('filter');
+      var filterAttr = $( this ).data('filter');
       console.log(filterAttr)
-        // set filter in hash
-      location.hash = 'filter=' + encodeURIComponent(filterAttr);
+      // set filter in hash
+      location.hash = 'filter=' + encodeURIComponent( filterAttr );
     });
 
     var isIsotopeInit = false;
     onHashchange();
   }
 
+    
+
+    // bind filter button click
 
 
-  // bind filter button click
-
-
-  function onHashchange() {
-    var hashFilter = getHashFilter();
-    hashFilter = (hashFilter != '*') ? hashFilter : 'product-card';
-    if (!hashFilter && isIsotopeInit) {
-      return;
+    function onHashchange() {
+      var hashFilter = getHashFilter();
+      hashFilter = (hashFilter != '*') ? hashFilter: 'product-card';
+      if ( !hashFilter && isIsotopeInit ) {
+        return;
+      }
+      isIsotopeInit = true;
+      // filter isotope
+      $grid.isotope({
+        itemSelector: '.product-card',
+        filter: '.' + hashFilter
+      });
+      // set selected class on button
+      if ( hashFilter ) {
+        $filters.find('.current').removeClass('current');
+        $filters.find('[data-filter="' + hashFilter + '"]').closest('li').addClass('current');
+      }
     }
-    isIsotopeInit = true;
-    // filter isotope
-    $grid.isotope({
-      itemSelector: '.product-card',
-      filter: '.' + hashFilter
-    });
-    // set selected class on button
-    if (hashFilter) {
-      $filters.find('.current').removeClass('current');
-      $filters.find('[data-filter="' + hashFilter + '"]').closest('li').addClass('current');
-    }
-  }
 
-  $(window).on('hashchange', onHashchange);
-  // trigger event handler to init Isotope
+    $(window).on( 'hashchange', onHashchange );
+    // trigger event handler to init Isotope
 
   /*=====  End of Filter  ======*/
 
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
   /*======================================
   =            Yandex targets            =
   ======================================*/
-
+  
   // Заказ отправлен (полностью завершили заказ и нажали кнопку "Подтвердить")
   $('.woocommerce-checkout').on('submit', function() {
     yaCounter43474974.reachGoal('ORDER_SEND');
@@ -294,9 +294,9 @@ document.addEventListener('DOMContentLoaded', function() {
   $('[href="mailto:info@pitline32.ru"]').on('click', function() {
     yaCounter43474974.reachGoal('CLICK_TO_EMAIL');
   });
-
+  
   /*=====  End of Yandex targets  ======*/
 
-
+  
 
 });
