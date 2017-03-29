@@ -139,58 +139,164 @@ document.addEventListener('DOMContentLoaded', function() {
   function getHashFilter() {
     var hash = location.hash;
     // get filter=filterName
-    var matches = location.hash.match( /filter=([^&]+)/i );
+    var matches = location.hash.match(/filter=([^&]+)/i);
     var hashFilter = matches && matches[1];
 
     if (!hashFilter) {
       return '*';
     }
-    return hashFilter && decodeURIComponent( hashFilter );
+    return hashFilter && decodeURIComponent(hashFilter);
   }
 
   var $filter = $('.filter');
 
   if ($filter.length) {
     var $grid = $('.products-grid');
-    var $filters = $filter.on( 'click', 'a', function(event) {
+    var $filters = $filter.on('click', 'a', function(event) {
       event.preventDefault();
-      var filterAttr = $( this ).data('filter');
+      var filterAttr = $(this).data('filter');
       console.log(filterAttr)
-      // set filter in hash
-      location.hash = 'filter=' + encodeURIComponent( filterAttr );
+        // set filter in hash
+      location.hash = 'filter=' + encodeURIComponent(filterAttr);
     });
 
     var isIsotopeInit = false;
     onHashchange();
   }
 
-    
-
-    // bind filter button click
 
 
-    function onHashchange() {
-      var hashFilter = getHashFilter();
-      hashFilter = (hashFilter != '*') ? hashFilter: 'product-card';
-      if ( !hashFilter && isIsotopeInit ) {
-        return;
-      }
-      isIsotopeInit = true;
-      // filter isotope
-      $grid.isotope({
-        itemSelector: '.product-card',
-        filter: '.' + hashFilter
-      });
-      // set selected class on button
-      if ( hashFilter ) {
-        $filters.find('.current').removeClass('current');
-        $filters.find('[data-filter="' + hashFilter + '"]').closest('li').addClass('current');
-      }
+  // bind filter button click
+
+
+  function onHashchange() {
+    var hashFilter = getHashFilter();
+    hashFilter = (hashFilter != '*') ? hashFilter : 'product-card';
+    if (!hashFilter && isIsotopeInit) {
+      return;
     }
+    isIsotopeInit = true;
+    // filter isotope
+    $grid.isotope({
+      itemSelector: '.product-card',
+      filter: '.' + hashFilter
+    });
+    // set selected class on button
+    if (hashFilter) {
+      $filters.find('.current').removeClass('current');
+      $filters.find('[data-filter="' + hashFilter + '"]').closest('li').addClass('current');
+    }
+  }
 
-    $(window).on( 'hashchange', onHashchange );
-    // trigger event handler to init Isotope
+  $(window).on('hashchange', onHashchange);
+  // trigger event handler to init Isotope
 
   /*=====  End of Filter  ======*/
+
+
+  /*====================================
+  =            Calc benefit            =
+  ====================================*/
+
+  var formatter = new Intl.NumberFormat('ru', {
+    style: 'currency',
+    currency: 'RUB',
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+
+  var formBenefit = document.querySelector('.form-benefit');
+
+  if (formBenefit) {
+    var quantityField = formBenefit.elements.quanity;
+    var tariffField = formBenefit.elements.tariff;
+    var workDayField = formBenefit.elements.workDay;
+
+    var outputYear = document.getElementById('outputSaveYear');
+    var output2Years = document.getElementById('outputSave2Years');
+    var output3Years = document.getElementById('outputSave3Years');
+
+    var q = quantityField.value;
+    var t = tariffField.value;
+    var w = workDayField.value;
+
+    var K_ILLUM = 0.09;
+    var K_ILLUM_PITLINE = 0.036 * 0.8;
+
+    var K_2_YERS = 1.2;
+    var K_3_YERS = 1.4;
+
+    formBenefit.addEventListener('input', function() {
+      outputYear.value = formatter.format(calcSaves());
+      output2Years.value = formatter.format(calcSaves() * K_2_YERS * 2);
+      output3Years.value = formatter.format(calcSaves() * K_3_YERS * 3);
+    });
+
+    formBenefit.addEventListener('keyup', function(event) {
+      // 38 => key up
+      // 40 => key down
+      if (event.keyCode === 38 || event.keyCode === 40) {
+        outputYear.value = formatter.format(calcSaves());
+        output2Years.value = formatter.format(calcSaves() * K_2_YERS * 2);
+        output3Years.value = formatter.format(calcSaves() * K_3_YERS * 3);
+      }
+    });
+
+    function calcSaves() {
+      q = quantityField.value;
+      t = tariffField.value;
+      w = workDayField.value;
+
+      return (270 * q) + ((q * K_ILLUM * w * 365) * t) - ((q * K_ILLUM_PITLINE * w * 365) * t);
+    }
+
+    outputYear.value = formatter.format(calcSaves());
+    output2Years.value = formatter.format(calcSaves() * K_2_YERS * 2);
+    output3Years.value = formatter.format(calcSaves() * K_3_YERS * 3);
+  }
+
+  /*=====  End of Calc benefit  ======*/
+
+
+
+  /*======================================
+  =            Yandex targets            =
+  ======================================*/
+
+  // Заказ отправлен (полностью завершили заказ и нажали кнопку "Подтвердить")
+  $('.woocommerce-checkout').on('submit', function() {
+    yaCounter43474974.reachGoal('ORDER_SEND');
+  });
+
+
+  // Добавили товар в корзину
+  $('.product-card__add-to-cart').on('click', targetAddToCart);
+  $('form.cart').on('submit', targetAddToCart);
+
+  function targetAddToCart() {
+    yaCounter43474974.reachGoal('ADD_TO_CART');
+  }
+
+
+  // Перешли в корзину и нажали на кнопку "Перейти к оформлению"
+  $('.wc-proceed-to-checkout .checkout-button').on('click', function() {
+    yaCounter43474974.reachGoal('ORDER_FORM');
+  });
+
+
+  // Отправили форму обратной связи (в шапке) 
+  $('#popup-callback form').on('submit', function() {
+    yaCounter43474974.reachGoal('CALLBACK_FORM');
+  });
+
+
+  // Кликнули по адресу email в шапке сайта
+  $('[href="mailto:info@pitline32.ru"]').on('click', function() {
+    yaCounter43474974.reachGoal('CLICK_TO_EMAIL');
+  });
+
+  /*=====  End of Yandex targets  ======*/
+
+
 
 });

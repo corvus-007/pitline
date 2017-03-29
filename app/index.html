@@ -55,6 +55,58 @@
       <div class="index-slider__arrows-wrapper"></div>
     </div>
     <main class="site-main">
+
+    <section class="index-section">
+      <header class="index-section__headline">
+        <h2 class="index-section__title">Ваша выгода</h2>
+      </header>
+      <form class="form-benefit container" action="/" method="get">
+        <div class="grid">
+          <label class="form-item col-mobile-up-4">
+            <span class="form-label">Количество светильников, шт.</span>
+            <input class="form-control" type="number" name="quanity" min="1" step="1" value="1" />
+          </label>
+          <label class="form-item col-mobile-up-4">
+            <span class="form-label">Тариф, руб/кВт/ч</span>
+            <input class="form-control" type="number" name="tariff" min="1" value="5" />
+          </label>
+          <label class="form-item col-mobile-up-4">
+            <span class="form-label">Среднее кол-во часов работы в сутки, ч.</span>
+            <input class="form-control" type="number" name="workDay" min="1" max="24" value="8" />
+          </label>
+        </div>
+
+        <!-- <div class="form-benefit__output">
+          <p class="form-benefit__output-item">Экономия <mark>за год</mark>: <output class="form-benefit__output-value" id="outputSaveYear"></output></p>
+          <p class="form-benefit__output-item">Экономия <mark>за 2 года</mark>: <output class="form-benefit__output-value" id="outputSave2Years"></output></p>
+          <p class="form-benefit__output-item">Экономия <mark>за 3 года</mark>: <output class="form-benefit__output-value" id="outputSave3Years"></output></p>
+        </div> -->
+
+        <table class="form-benefit__output">
+          <tbody>
+            <tr class="form-benefit__output-item">
+              <td>Экономия за год:</td>
+              <td>
+                <output class="form-benefit__output-value" id="outputSaveYear"></output>
+              </td>
+            </tr>
+            <tr class="form-benefit__output-item">
+              <td>Экономия за 2 года:</td>
+              <td>
+                <output class="form-benefit__output-value" id="outputSave2Years"></output>
+              </td>
+            </tr>
+            <tr class="form-benefit__output-item">
+              <td>Экономия за 3 года:</td>
+              <td>
+                <output class="form-benefit__output-value" id="outputSave3Years"></output>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </section>
+
       <section class="index-section index-features">
         <h2 class="visuallyhidden">Наши преимущества</h2>
         <div class="container">

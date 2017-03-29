@@ -1,0 +1,46 @@
+.form-benefit {
+
+}
+
+.form-benefit__output {
+  margin-top: 20px;
+  white-space: nowrap;
+
+  tbody {
+    
+    tr {
+
+      td {
+        background-color: #fff;
+      }
+    }
+  }
+
+  tr {
+
+  }
+
+  td {
+    padding: 5px;
+    padding-left: 0;
+    padding-right: 20px;
+
+    &:first-child {
+      width: 1%;
+      text-align: right;
+    }
+  }
+}
+
+.form-benefit__output-item {
+  font-size: rem(18);
+}
+
+.form-benefit__output-value {
+  display: inline-block;
+  padding: 5px 10px;
+  vertical-align: middle;
+  font-weight: 700;
+  font-size: 1.2em;
+  // background-color: #defc37;
+}
